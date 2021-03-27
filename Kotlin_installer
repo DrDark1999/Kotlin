@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+echo "Welcome To installer Kotlin Complier"
+echo "System will Start in 2 Seconds" && sleep 2
+echo "Here We Gooooo...."
+sleep 1
+clear
+
+figlet -w 300 Installer Kothlinc
+echo -e "\e[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo -e "                    Design and Develop                          "
+echo -e "                           by                                   "
+echo -e "                  \e[5m \e[91m \e[4m \e[1m Samurai Ghost \e[0m                                 "
+echo
+echo
+echo
+echo "To get started Please Press Enter"
+read fakeenter
+
+echo "Installing SDKMAN"
+sudo curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+echo
+echo "Updating SDK wait....."
+sdk selfupdate force
+echo
+echo "Current Version is:" && sdk version
+echo "Installing Kotlin Compiler:" && sdk install kotlin
+echo
+echo "Installation Finished...."
+echo "Creating Programming Environment at Home Directory"
+cd && cd Desktop && mkdir Kotlin && cd Kotlin && mkdir Source && mkdir Output 
+git clone https://github.com/DrDark1999/Kotlin/blob/main/kotlinc
+echo "Enviroment Path is Desktop/Kotlin"
+exit
