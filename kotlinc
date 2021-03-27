@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+echo "Welcome To Kotlin Complier"
+echo "System will Start in 2 Seconds"
+sleep 2
+echo "Here We Gooooo...."
+sleep 0.5
+clear
+
+figlet  -w 300 Kotlin Compiler
+echo -e "\e[32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo -e "                    Design and Develop                          "
+echo -e "                           by                                   "
+echo -e "                  \e[5m \e[91m \e[4m \e[1m Samurai Ghost \e[0m  "
+echo
+echo
+echo
+echo
+cd Source
+pwd
+ls
+echo
+
+read -p "Enter The name of file that you want to compile..> " inputefilename
+if [ -e $inputefilename ]
+then
+  if [ "$inputefilename" == "\n" ]
+  then
+    echo "You accidently press 'Enter Key'..."
+  else
+  echo "$inputefilename Found"
+fi
+else
+  echo "File not Found"
+  read -p "Enter Path to File (Do not include file Name)....>" path
+  [ -d "$path" ] && echo "Directory $path exists." || echo "Path not found"
+  echo
+  echo "Directory Contain..."
+  cd $path && ls
+  echo
+  read -p "Enter name of file...>" inputefilename
+  if [ -e $inputefilename ]
+  then
+    if [ "$inputefilename" == "\n" ]
+    then
+      echo "You accidently press 'Enter Key'..."
+    else
+    echo "$inputefilename Found"
+  fi
+  else
+    echo "File not Found Provide Exact Path Exiting....."
+    exit
+  fi
+fi
+echo
+
+read -p "Enter output file name..>" outputfilename
+echo $outputfilename.jar
+
+kotlinc $inputefilename -include-runtime -d $outputfilename.jar | grep -v 'WARNING'
+cd ..
+mv  Source/$outputfilename.jar Output/
+echo
+cd Output/ && pwd && ls
+echo
+echo "If it Compiled well Then Press enter To run the program else ctrl+c"
+read fakeenter
+echo
+echo "Running Program...."
+java -jar $outputfilename.jar
+cd ..
+exit
